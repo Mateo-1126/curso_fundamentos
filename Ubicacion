@@ -1,0 +1,29 @@
+class Ubicacion {
+  private String name;
+  private float dist;
+  private int zombies;
+
+  public void setName(String na) {
+    this.name = na;
+  }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public void setDist(float d) {
+    this.dist = d;
+  }
+
+  public float getDist() {
+    return this.dist;
+  }
+
+  public void setZombies(int z) {
+    this.zombies = z;
+  }
+
+  public int getZombies() {
+    return this.zombies;
+  }
+}
