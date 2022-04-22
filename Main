@@ -1,0 +1,239 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Random;
+
+class Main 
+{
+  public static void main(String[] args) 
+  {
+    mostrarMenu();
+  }
+
+  public static void mostrarMenu() 
+  {
+    menu();
+    Scanner scan = new Scanner(System.in);
+    int x = scan.nextInt();
+    ArrayList<Zombie> arr_zombie = new ArrayList<Zombie>();
+    ArrayList<Ubicacion> arr_ubicacion = new ArrayList<Ubicacion>();
+    while (x != 0) {
+      switch (x) {
+        case 1:
+          caso1(arr_zombie);
+          break;
+        case 2:
+          caso2(arr_zombie);
+          break;
+        case 3:
+          System.out.println("Los zombies creados hasta el momento son: " + arr_zombie.size());
+          break;
+        case 4:
+          caso4(arr_zombie);
+          break;
+        case 5:
+          caso5(arr_zombie);
+          break;
+        case 6:
+          caso6(arr_zombie);
+          break;
+        case 7:
+          caso7(arr_ubicacion);
+          break;
+        case 8:
+         caso8(arr_ubicacion);
+          break;
+        case 9:
+          caso9(arr_ubicacion);
+          break;
+        case 10:
+          bubbleSort(arr_ubicacion, arr_ubicacion.size());
+          System.out.println("Las ubicaciones han sido ordenadas de menor a mayor distancia a Alejandria");
+          break;
+        case 11:
+          caso11();
+          break;
+        case 12:
+          caso12(arr_zombie);
+          break;
+        case 13:
+          menu();
+          break;
+          
+      }
+      System.out.println("");
+      System.out.println("-------------------------------------------------");
+      System.out.println("");
+      System.out.print("Si desea usar alguna otra funcionalidad ofrecida por nuestro programa, ingrese el numero que desee basado en lo que menciona nuestro menu. Si desea volver a ver el menu, presione 13. Si su servicio con nosotros ha culminado, ingrese el numero 0 y tenga un bonito dia.");
+      System.out.println("");
+      System.out.println("");
+      x = scan.nextInt();
+      if (x == 0){
+        System.out.println("");
+        System.out.println("Gracias por hacer uso de nuestro servicio!");
+      }
+    }   
+  }
+public static ArrayList<Zombie> caso1(ArrayList<Zombie> arr){
+  Scanner scan=new Scanner(System.in); 
+  System.out.print("Ingrese nombre: ");
+          String nombre1 = scan.next();
+          System.out.print("Ingrese salud: ");
+          int sal1 = scan.nextInt();
+          System.out.print("Ingrese año de nacimiento del zombie: ");
+          int date1 = scan.nextInt();
+          System.out.print("Ingrese tipo de sangre: ");
+          String blood1 = scan.next();
+          Zombie z1 = new Zombie();
+          z1.setNombre(nombre1);
+          z1.setSalud(sal1);
+          z1.setFecha(date1);
+          z1.setBlood(blood1);
+          arr.add(z1);
+  return arr;
+}
+  public static void caso2(ArrayList<Zombie> arr){
+    System.out.println("Los zombies en la lista son: ");
+          for (int i = 0; i < arr.size(); i++) {
+            retorno(arr.get(i).getNombre(), arr.get(i).getSalud(), arr.get(i).getFecha(),
+                arr.get(i).getBlood());
+            System.out.println("----------");
+          }
+  }
+  public static void caso4(ArrayList<Zombie> arr){
+    for (int i = 0; i < arr.size(); i++) 
+          {
+            if ((arr.get(i).getBlood().equals("O+")) || (arr.get(i).getBlood().equals("AB+"))) 
+            {
+              retorno(arr.get(i).getNombre(), arr.get(i).getSalud(), arr.get(i).getFecha(),
+                  arr.get(i).getBlood());
+              System.out.println("---------");
+            }
+          }
+  }
+  public static void caso5(ArrayList<Zombie> arr){
+    for (int i = 0; i < arr.size(); i++) {
+            if (arr.get(i).getFecha() > 2000) {
+              retorno(arr.get(i).getNombre(), arr.get(i).getSalud(), arr.get(i).getFecha(),
+                  arr.get(i).getBlood());
+              System.out.println("---------");
+            }
+          }
+  }
+  public static ArrayList<Zombie> caso6(ArrayList<Zombie> arr){
+    for (int i = 0; i < arr.size(); i++) {
+            arr.get(i).setSalud(arr.get(i).getSalud() / 2);
+          }
+    return arr;
+  }
+  public static ArrayList<Ubicacion> caso7(ArrayList<Ubicacion> arr){
+    Scanner scan=new Scanner(System.in);
+    System.out.print("Ingrese nombre: ");
+          String nombre2 = scan.next();
+          System.out.print("Ingrese distancia a Alexandra: ");
+          float dist2 = scan.nextFloat();
+          System.out.print("Ingrese cantidad de Zombies de la ubicacion: ");
+          int cant2 = scan.nextInt();
+          Ubicacion u1 = new Ubicacion();
+          u1.setName(nombre2);
+          u1.setDist(dist2);
+          u1.setZombies(cant2);
+          arr.add(u1);
+    return arr;
+  }
+public static void caso8(ArrayList<Ubicacion> arr){
+ System.out.println("Las ubicaciones en la lista son: ");
+          for (int i = 0; i < arr.size(); i++) 
+          {
+            System.out.println("La informacion de la ciudad es: ");
+            retorno(arr.get(i).getName(),arr.get(i).getDist(),arr.get(i).getZombies());   
+System.out.println("---------");
+          }
+  }
+  public static void caso9(ArrayList<Ubicacion> arr){
+    if(arr.size()!=0)
+          {
+          int pos_menor = 0;
+          for (int i = 0; i < arr.size() ; i++) 
+          {
+            if (arr.get(i).getZombies() < arr.get(pos_menor).getZombies()) 
+            {
+              pos_menor = i;
+            }
+          }
+          
+          System.out.println("La ubicacion más segura de la ciudad es: " + arr.get(pos_menor).getName());
+            }
+  }
+public static void caso11(){
+    Random aleatorio = new Random();
+          int N = aleatorio.nextInt(5);
+          String[] arr_frases = new String[5];
+          arr_frases[0] = "Los zombies son una figura histórica dentro de las culturas del vudú haitiano. Entre sus características está el ser un muerto resucitado por medios mágicos por un maestro del vudú con el fin de volverlo su esclavo.";
+          arr_frases[1] = "Australia es el lugar más seguro para estar durante un apocalípsis zombie";
+          arr_frases[2] = "En la actualidad incluso el Pentágono en EUA y el Centro De Control de Enfermedades (CDC) cuentan con un plan de acción en caso de una emergencia nacional del tipo zombie (el cual aparentemente no ha funcionado en este caso xd)";
+          arr_frases[3] = "Los zombies no pelean entre ellos, con la excepción de que esten peleando por comida";
+          arr_frases[4] = "Los zombies frecuentan lugares que le son familiares de sus vidas pasadas";
+          System.out.println(arr_frases[N]);
+          
+  }
+
+public static void caso12(ArrayList<Zombie> arr){
+  int acum=0; 
+         for(int i=0; i<arr.size();i++)
+           {
+             acum += arr.get(i).getSalud();
+           }
+          if(acum!=0)
+          {
+          int promSalud= acum/(arr.size());
+          System.out.println("El promedio de salud de los zombies es de: " + promSalud);
+          }
+          else
+          {
+            System.out.println("No hay zombies para generar promedio");
+          }
+}
+
+public static void menu(){
+  System.out.println("Buenos días y gracias por comunicarte con nosotros nuestra línea antizombies, cortesía de la cuidad de Alexandria. A continuación, se listarán las funciones proveídas por el programa y como usar cada una de estas. Para usar una de nuestras funciones, pulse el numero mostrado al principio de cada instruccion"); 
+    System.out.println("1 para reportar la aparición de un nuevo zombie."); 
+    System.out.println("2 para ver la información de cada zombie."); 
+    System.out.println("3 para ver cuántos zombies hay en los alrededores de Alexandria."); 
+    System.out.println("4 para ver la información de los zombies con sangre O+ o AB+.");
+    System.out.println("5 para ver que zombies tienen menos de 22 años.");
+    System.out.println("6 para detonar una bomba nuclear y disminuir a la mitad la vida de los zombies."); 
+    System.out.println("7 para reportar la existencia de una ubicación nueva.");
+    System.out.println("8 para ver cuantas ubicaciones hay cerca de Alexandria."); 
+    System.out.println("9 para mostrar la información de la ubicación más segura de Alexandria.");
+    System.out.println("10 para mostrar todas las ubicaciones reportadas ordenadas según su cercanía a Alexandria.");
+    System.out.println("11 si desea conocer un dato curioso acerca de los zombies.");
+    System.out.println("12 si desea conocer el estado de salud promedio de todos los zombies.");
+    System.out.println("Finalmente, si desea acabar con uso del servicio, presione 0. "); 
+}
+  
+  public static void retorno(String a, int b, int c, String d) {
+    System.out.println("Nombre del zommbie: "+a);
+    System.out.println("Salud: "+b);
+    System.out.println("Año de nacimiento: "+c);
+    System.out.println("Tipo de sangre: "+d);
+  }//Se hace este metodo para imprimir cada atributo de los Zombies
+  public static void retorno(String a, float b, int c) {
+    System.out.println("Nombre de la ciudad: "+a);
+    System.out.println("Distancia a Alejandria: "+b);
+    System.out.println("Cantidad de zombies: "+c);
+  }
+  public static void bubbleSort(ArrayList<Ubicacion> arr_ubicacion, int len){
+        
+        for (int i=0;i<len-1;++i){
+
+            for(int j=0;j<len-i-1; ++j){
+
+                if(arr_ubicacion.get(j+1).getDist()<arr_ubicacion.get(j).getDist()){
+                    float swap = arr_ubicacion.get(j).getDist();
+                    arr_ubicacion.get(j).setDist(arr_ubicacion.get(j+1).getDist());
+                    arr_ubicacion.get(j+1).setDist(swap);
+                }
+            }
+        }
+    }
+}
