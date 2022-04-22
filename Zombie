@@ -1,0 +1,39 @@
+class Zombie {
+  private String nombre;
+  private int salud;
+  private int fechaCum;
+  private String blood;
+
+  public void setNombre(String n) {
+    this.nombre = n;
+  }
+
+  public String getNombre() {
+    return this.nombre;
+  }
+
+  public void setSalud(int s) {
+    this.salud = s;
+  }
+
+  public int getSalud() {
+    return this.salud;
+  }
+
+  public void setFecha(int f) {
+    this.fechaCum = f;
+  }
+
+  public int getFecha() {
+    return this.fechaCum;
+  }
+
+  public void setBlood(String b) {
+    this.blood = b;
+  }
+
+  public String getBlood() {
+    return this.blood;
+  }
+
+}
